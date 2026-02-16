@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pilgrim Bank - Beyond Expectations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Floating Rainbow Animation */
+        .floating-text {
+            position: fixed;
+            font-size: 2.5rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: rainbow 2s linear infinite, float 10s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            17% { color: #ff8800; }
+            33% { color: #ffff00; }
+            50% { color: #00ff00; }
+            67% { color: #0088ff; }
+            83% { color: #8800ff; }
+            100% { color: #ff00ff; }
+        }
+
+        @keyframes float {
+            0% { top: 5%; left: 5%; opacity: 1; }
+            25% { top: 5%; right: 5%; opacity: 1; }
+            50% { bottom: 5%; right: 5%; opacity: 0.5; }
+            75% { bottom: 5%; left: 5%; opacity: 0.5; }
+            100% { top: 5%; left: 5%; opacity: 1; }
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: #000;
+            color: #00ff00;
+            padding: 8px 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 40px;
+            z-index: 999;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            color: #000;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .dropbtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #1a1a1a;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            z-index: 1;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #333;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 20px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            color: #000;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffd700;
+        }
+
+        section h3 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin: 30px 0 20px;
+        }
+
+        section p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        /* About Section */
+        .about-content {
+            background: rgba(255, 215, 0, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .service-card h4 {
+            font-size: 1.4rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        /* Media Section */
+        .media-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .media-item {
+            text-align: center;
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid #ffd700;
+        }
+
+        .caption {
+            margin-top: 15px;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Founder Section */
+        .founder-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+            padding: 60px 40px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+        }
+
+        .founder-message {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #fff;
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mv-card {
+            background: rgba(255, 215, 0, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+        }
+
+        .mv-card h3 {
+            text-align: center;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #ffd700;
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #888;
+            margin: 10px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .floating-text {
+                font-size: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span class="blink">Adegan Global Enterprise Collaborating... With others not yet</span>
+    </div>
+
+    <!-- Floating Rainbow Text -->
+    <div class="floating-text">Global Pilgrim Bank</div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="dropdown">
+                <button class="dropbtn">☰ Menu</button>
+                <div class="dropdown-content">
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#pilgrim-coin">Pilgrim Coin</a>
+                    <a href="#services">Banking Services</a>
+                    <a href="#income-builder">Income Builder</a>
+                    <a href="#security">Security</a>
+                    <a href="#founder">Founder's Message</a>
+                    <a href="#mission">Mission & Vision</a>
+                    <a href="#partners">Partnerships</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to Global Pilgrim Bank – Banking Beyond Expectations</h1>
+        <p class="tagline">🏦 Beyond Expectations</p>
+        <p>A secure, transparent, and innovative digital banking ecosystem built for global individuals, businesses, and future generations.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="cta-btn primary">Open an Account</a>
+            <a href="#pilgrim-coin" class="cta-btn secondary">Explore Pilgrim Coin</a>
+            <a href="#income-builder" class="cta-btn secondary">Start Building Wealth</a>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <div class="media-section">
+        <h2 style="text-align: center; color: #ffd700; margin-bottom: 40px;">Gallery</h2>
+        <div class="media-grid">
+            <div class="media-item">
+                <img src="IMG_20251020_084318.jpg" alt="Olawale Abdul-Ganiyu Adeshina">
+                <p class="caption">Olawale Abdul-Ganiyu Adeshina</p>
+            </div>
+            <div class="media-item">
+                <img src="Screenshot_2025-10-20-17-14-01-240_com.miui.mediaviewer.jpg" alt="Olawale Abdul-Ganiyu Adeshina">
+                <p class="caption">Olawale Abdul-Ganiyu Adeshina</p>
+            </div>
+        </div>
+        <div class="media-grid" style="margin-top: 40px;">
+            <div class="media-item">
+                <video controls autoplay muted loop>
+                    <source src="2025_1020_192202.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p class="caption">Olawale Abdul-Ganiyu Adeshina</p>
+            </div>
+            <div class="media-item">
+                <video controls autoplay muted loop>
+                    <source src="2025_1020_192444.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p class="caption">Olawale Abdul-Ganiyu Adeshina</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Global Pilgrim Bank</h2>
+        <div class="about-content">
+            <p>Global Pilgrim Bank is a forward-thinking digital financial institution designed to redefine confidence in modern banking. Built on advanced technology and guided by strong ethical values, we provide individuals and businesses with secure financial services that prioritize safety, transparency, and sustainable growth.</p>
+            <p>Founded on the vision of financial inclusion, we combine traditional banking strength with innovative digital currency solutions through Pilgrim Coin — a currency designed for everyday global use.</p>
+        </div>
+    </section>
+
+    <!-- Pilgrim Coin Section -->
+    <section id="pilgrim-coin">
+        <h2>🪙 About Pilgrim Coin</h2>
+        <div class="about-content">
+            <p>Pilgrim Coin, founded in 2022, represents the evolution of accessible digital finance. Developed through a strategic infrastructure phase between 2022 and 2025, Pilgrim Coin is built to:</p>
+            <ul style="color: #ddd; margin: 20px 0 20px 40px; line-height: 2;">
+                <li>Enable seamless global payments</li>
+                <li>Provide easy conversion into local and international currencies</li>
+                <li>Offer secure blockchain-backed transactions</li>
+                <li>Integrate directly with Global Pilgrim Bank services</li>
+            </ul>
+            <p>Pilgrim Coin is not just a digital asset — it is a bridge between digital innovation and real-world financial empowerment.</p>
+        </div>
+    </section>
+
+    <!-- Banking Services Section -->
+    <section id="services">
+        <h2>🏦 Our Banking Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h4>💳 Personal Banking</h4>
+                <ul style="color: #ddd; line-height: 2;">
+                    <li>Secure savings and current accounts</li>
+                    <li>Global transfers and multi-currency wallet</li>
+                    <li>Fixed deposits and structured savings</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h4>🏢 Business Banking</h4>
+                <ul style="color: #ddd; line-height: 2;">
+                    <li>SME and corporate banking solutions</li>
+                    <li>Payroll and payment processing</li>
+                    <li>Cross-border trade services</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h4>📱 Digital Banking</h4>
+                <ul style="color: #ddd; line-height: 2;">
+                    <li>Online and mobile banking platform</li>
+                    <li>Instant transfers</li>
+                    <li>Advanced fraud protection systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Income Builder Section -->
+    <section id="income-builder">
+        <h2>📈 Income Builder Programs</h2>
+        <p>We believe banking should grow with you. Our Income Builder Programs are designed for:</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h4>💼 Working Professionals</h4>
+                <p style="color: #ddd;">Structured savings and investment plans tailored for career growth and financial stability.</p>
+            </div>
+            <div class="service-card">
+                <h4>🏗️ Entrepreneurs</h4>
+                <p style="color: #ddd;">Flexible financing and wealth-building solutions for business owners and innovators.</p>
+            </div>
+            <div class="service-card">
+                <h4>👴 Retirees</h4>
+                <p style="color: #ddd;">Secure retirement planning with guaranteed returns and flexible withdrawal options.</p>
+            </div>
+            <div class="service-card">
+                <h4>👶 Children Wealth Accounts</h4>
+                <p style="color: #ddd;">Special accounts for individuals under 18, with structured parental or guardian guarantees, ensuring safe early financial growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security">
+        <h2>🔐 Security & Confidence Guarantee</h2>
+        <div class="about-content">
+            <p>At Global Pilgrim Bank, customer protection is not optional — it is foundational.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Advanced Security</h4>
+                    <ul style="color: #ddd; line-height: 2;">
+                        <li>Advanced encryption systems</li>
+                        <li>Real-time transaction monitoring</li>
+                        <li>Multi-layer authentication</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h4>Compliance & Trust</h4>
+                    <ul style="color: #ddd; line-height: 2;">
+                        <li>Strong compliance standards</li>
+                        <li>Zero tolerance for fraud</li>
+                        <li>Regular security audits</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2rem; color: #ffd700;">Your money is protected with integrity, discipline, and innovation.</p>
+        </div>
+    </section>
+
+    <!-- Global Exchange Network -->
+    <section>
+        <h2>🌍 Global Exchange Network</h2>
+        <div class="about-content">
+            <p>Pilgrim Coin can be easily exchanged across Global Pilgrim Bank platforms and partner networks into:</p>
+            <ul style="color: #ddd; margin: 20px 0 20px 40px; line-height: 2;">
+                <li>Local currencies</li>
+                <li>International currencies</li>
+                <li>Cash equivalents</li>
+            </ul>
+            <p>We are building a borderless financial experience designed for simplicity and trust.</p>
+        </div>
+    </section>
+
+    <!-- Founder's Message -->
+    <section id="founder">
+        <h2>📜 Message from the Founder</h2>
+        <div class="founder-section">
+            <h3 style="text-align: center; color: #ffd700;">Olawale Abdul-Ganiyu Adeshina</h3>
+            <div class="founder-message">
+                <p>When I founded Pilgrim Coin in 2022, it was driven by a simple but powerful vision — to create a financial system that works for everyone.</p>
+                <p>Between 2022 and 2025, the project underwent deliberate development, infrastructure building, and strategic refinement. The goal was never to create just another digital coin, but to establish a reliable financial ecosystem backed by discipline, structure, and long-term sustainability.</p>
+                <p>Global Pilgrim Bank was born from that same vision.</p>
+                <p>We live in a world where financial uncertainty often creates fear. My commitment is to build a banking system where individuals feel secure, valued, and confident in the safety of their funds.</p>
+                <p>Pilgrim Coin is designed not merely as a digital currency, but as a tool for empowerment — easy to use, easy to convert, and accessible globally.</p>
+                <p>Through collaboration with Adegan Global Enterprise and future partners, we are building beyond today — into a future of transparent, fraud-resistant, opportunity-driven digital banking.</p>
+                <p><strong>This is not just innovation. This is responsibility. This is commitment.</strong></p>
+                <p style="text-align: center; margin-top: 30px; font-size: 1.3rem; color: #ffd700;">Welcome to Global Pilgrim Bank — Beyond Expectations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section id="mission">
+        <h2>🎯 Mission & Vision</h2>
+        <div class="mission-vision">
+            <div class="mv-card">
+                <h3>🔭 Vision Statement</h3>
+                <p style="color: #ddd; text-align: center; margin-top: 20px;">To become a globally trusted digital banking institution that delivers secure, inclusive, and innovative financial solutions beyond expectations.</p>
+            </div>
+            <div class="mv-card">
+                <h3>📋 Mission Statement</h3>
+                <ul style="color: #ddd; line-height: 2; margin-top: 20px;">
+                    <li>To provide secure and transparent banking services powered by advanced technology</li>
+                    <li>To ensure the safety and protection of customer funds</li>
+                    <li>To promote global financial inclusion through Pilgrim Coin</li>
+                    <li>To empower individuals with sustainable income-building opportunities</li>
+                    <li>To maintain integrity, discipline, and innovation in all financial operations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnerships -->
+    <section id="partners">
+        <h2>🤝 Partnerships</h2>
+        <div class="about-content">
+            <p>In collaboration with Adegan Global Enterprise and strategic global partners, we are expanding a financial ecosystem that empowers individuals worldwide.</p>
+            <p>We welcome institutional collaborations and strategic alliances that share our vision of transparent, secure, and accessible banking for all.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>📞 Get in Touch</h2>
+        <div class="about-content">
+            <h3 style="color: #ffd700;">Experience Digital Banking Without Regret</h3>
+            <p style="font-size: 1.2rem; text-align: center; margin: 30px 0;">Experience confidence. Experience Global Pilgrim Bank.</p>
+            <div style="text-align: center;">
+                <a href="#" class="cta-btn primary">Open Your Account Today</a>
+            </div>
+            <div style="margin-top: 40px; text-align: center;">
+                <p><strong>📍 Global Pilgrim Bank Headquarters</strong></p>
+                <p>Adegan Global Enterprise</p>
+                <p>📧 contact@globalpilgrimbank.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Global Pilgrim Bank. All Rights Reserved.</p>
+        <p>Banking Beyond Expectations</p>
+        <p>In Collaboration with Adegan Global Enterprise</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-play videos with muted attribute for better compatibility
+        document.querySelectorAll('video').forEach(video => {
+            video.muted = true;
+            video.play().catch(function(error) {
+                console.log("Auto-play prevented by browser policy");
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.style.background = 'linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
